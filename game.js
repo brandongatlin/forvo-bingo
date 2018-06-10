@@ -143,6 +143,13 @@ let pixArr = [
     url: "pics/water.png"
   }
 ];
+
+let row1 = $( `<div class="row" id="row-1"></div>` );
+let row2 = $( `<div class="row" id="row-2"></div>` );
+let row3 = $( `<div class="row" id="row-3"></div>` );
+let row4 = $( `<div class="row" id="row-4"></div>` );
+let row5 = $( `<div class="row" id="row-5"></div>` );
+
 let urlList = [];
 pixArr.forEach( function ( item ) {
   let url = item.url
@@ -154,13 +161,13 @@ var randomPix = [];
 var randomPic = "";
 
 function populateCard() {
-  $( "#bingo-table" ).empty();
+  // $( ".bingo-row" ).empty();
+
   let id = 1;
 
   for ( var i = 0; i < 25; i++ ) {
 
     //returns random pic
-    // randomPic = urlList[Math.floor(Math.random() * urlList.length)];
     randomPic = pixArr[ Math.floor( Math.random() * pixArr.length ) ];
 
     var idx = pixArr.indexOf( randomPic );
@@ -169,30 +176,39 @@ function populateCard() {
     randomPix.push( randomPic );
 
 
+
+
+
     var bingoPic = $( "<img>" ).attr( "src", randomPix[ i ].url ).attr( "data-id", randomPix[ i ].name ).attr( "id", id++ );
     $( bingoPic ).addClass( "bingoPix" );
 
     //start for loop to iterate thru pix array and populate bingo card
     if ( i <= 4 ) {
-      $( "#row-1" ).append( bingoPic );
+      $( row1 ).append( bingoPic );
     }
 
     if ( ( i >= 5 ) && ( i <= 9 ) ) {
-      $( "#row-2" ).append( bingoPic );
+      $( row2 ).append( bingoPic );
     }
 
     if ( ( i >= 10 ) && ( i <= 14 ) ) {
-      $( "#row-3" ).append( bingoPic );
+      $( row3 ).append( bingoPic );
     }
 
     if ( ( i >= 15 ) && ( i <= 19 ) ) {
-      $( "#row-4" ).append( bingoPic );
+      $( row4 ).append( bingoPic );
     }
 
     if ( ( i >= 20 ) && ( i <= 24 ) ) {
-      $( "#row-5" ).append( bingoPic );
+      $( row5 ).append( bingoPic );
     }
   } //end of for loop1
+  $( "#bingo-table" ).append( row1 );
+  $( "#bingo-table" ).append( row2 );
+  $( "#bingo-table" ).append( row3 );
+  $( "#bingo-table" ).append( row4 );
+  $( "#bingo-table" ).append( row5 );
+
   forvo()
 }
 
@@ -315,19 +331,34 @@ let selected = [ '13' ];
 populateCard()
 
 function winner() {
+
   alert( "winner!" );
   let won = 0
   won++
   $( "#winBoard" ).html( won );
-  populateCard();
+  $( "#start" ).append( `<button id="reset">Reset</button>` );
+  $( "#start" ).append( `<button id="start">Start</button>` );
 }
 
-// function reset() {
-//   selected = [];
-//   score = 0;
-//   console.log( "score:", score );
-//   console.log( "selected:", selected );
-// }
+$( document ).on( "click", "#reset", function () {
+  reset();
+} );
+
+$( document ).on( "click", "#start", function () {
+  populateCard();
+} );
+
+function reset() {
+  selected = [];
+  $( ".bingo-table" ).empty();
+  // $( "#row-1" ).empty();
+  // $( "#row-2" ).empty();
+  // $( "#row-3" ).empty();
+  // $( "#row-4" ).empty();
+  // $( "#row-5" ).empty();
+
+
+}
 
 
 // setTimeout(function () {
