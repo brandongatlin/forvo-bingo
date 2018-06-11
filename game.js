@@ -151,30 +151,43 @@ let row4 = $( `<div class="row" id="row-4"></div>` );
 let row5 = $( `<div class="row" id="row-5"></div>` );
 
 let urlList = [];
-pixArr.forEach( function ( item ) {
-  let url = item.url
-  urlList.push( url )
-  let name = item.name
-} )
 
 var randomPix = [];
 var randomPic = "";
 
+
+
 function populateCard() {
+  console.log("pop");
+
+  //copy pixArr
+  let newPixArr = [];
+  for (var i = 0; i < pixArr.length; i++) {
+    newPixArr.push(pixArr[i])
+  }
+
+  console.log("newPixArr", newPixArr);
+
+
+  newPixArr.forEach( function ( item ) {
+    let url = item.url
+    urlList.push( url )
+    let name = item.name
+  } )
   // $( ".bingo-row" ).empty();
 
   let id = 1;
+  randomPix = []
 
   for ( var i = 0; i < 25; i++ ) {
 
     //returns random pic
-    randomPic = pixArr[ Math.floor( Math.random() * pixArr.length ) ];
+    randomPic = newPixArr[ Math.floor( Math.random() * newPixArr.length ) ];
 
-    var idx = pixArr.indexOf( randomPic );
-    pixArr.splice( idx, 1 );
+    var idx = newPixArr.indexOf( randomPic );
+    newPixArr.splice( idx, 1 );
 
     randomPix.push( randomPic );
-
 
 
 
@@ -203,6 +216,7 @@ function populateCard() {
       $( row5 ).append( bingoPic );
     }
   } //end of for loop1
+
   $( "#bingo-table" ).append( row1 );
   $( "#bingo-table" ).append( row2 );
   $( "#bingo-table" ).append( row3 );
@@ -217,6 +231,8 @@ function populateCard() {
 let randomCall;
 
 function forvo() {
+  console.log("forvo");
+
 
   randomCall = randomPix[ Math.floor( Math.random() * randomPix.length ) ];
   let idx = randomPix.indexOf( randomCall );
@@ -326,7 +342,7 @@ const winners = [
 
 let possibleWinners = winners.length;
 
-let selected = [ '13' ];
+let selected = [ '13'];
 
 populateCard()
 
@@ -337,25 +353,24 @@ function winner() {
   won++
   $( "#winBoard" ).html( won );
   $( "#start" ).append( `<button id="reset">Reset</button>` );
-  $( "#start" ).append( `<button id="start">Start</button>` );
 }
 
 $( document ).on( "click", "#reset", function () {
   reset();
-} );
-
-$( document ).on( "click", "#start", function () {
   populateCard();
+
 } );
 
 function reset() {
+  console.log("reset");
   selected = [];
-  $( ".bingo-table" ).empty();
-  // $( "#row-1" ).empty();
-  // $( "#row-2" ).empty();
-  // $( "#row-3" ).empty();
-  // $( "#row-4" ).empty();
-  // $( "#row-5" ).empty();
+  $( "#row-1" ).empty();
+  $( "#row-2" ).empty();
+  $( "#row-3" ).empty();
+  $( "#row-4" ).empty();
+  $( "#row-5" ).empty();
+
+  $("#start").empty();
 
 
 }
