@@ -343,13 +343,13 @@ const winners = [
 let possibleWinners = winners.length;
 
 let selected = [ '13'];
+let won = 0
 
 populateCard()
 
 function winner() {
 
   alert( "winner!" );
-  let won = 0
   won++
   $( "#winBoard" ).html( won );
   $( "#start" ).append( `<button id="reset">Reset</button>` );
