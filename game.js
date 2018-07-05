@@ -236,7 +236,6 @@ function aJax(randomCall) {
     dataType: "jsonp",
     type: "jsonp",
     success: function(data) {
-      console.log("ajax success:", data);
 
       let name = data.items[0].word;
       let country = data.items[0].country;
@@ -317,7 +316,6 @@ let selected = [];
 let won = 0
 
 function winner() {
-  console.log('winner fx')
 
   alert("winner!");
   won++
