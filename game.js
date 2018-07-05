@@ -1,9 +1,7 @@
-
 let score = 0;
 
 //card code
-let pixArr = [
-  {
+let pixArr = [{
     name: "apple juice",
     nombre: "jugo de manzana",
     url: "pics/apple-juice.png"
@@ -153,19 +151,19 @@ let pixArr = [
     url: "pics/water.png"
   }
 ];
-console.log('spell')
+
 let urlList = [];
 
 var randomPix = [];
 var randomPic = "";
 let lang;
 
-$("#submit-language").on("click", function(){
+$("#submit-language").on("click", function() {
   populateCard();
-
 })
 
 function populateCard() {
+  console.log('poplat card')
   $("#game-board").empty();
   lang = $("#language-input").val().trim();
 
@@ -178,30 +176,30 @@ function populateCard() {
   let id = 1;
   randomPix = []
 
-  for ( var i = 0; i < 25; i++ ) {
+  for (var i = 0; i < 25; i++) {
 
     //returns random pic
-    randomPic = newPixArr[ Math.floor( Math.random() * newPixArr.length ) ];
+    randomPic = newPixArr[Math.floor(Math.random() * newPixArr.length)];
 
-    var idx = newPixArr.indexOf( randomPic );
-    newPixArr.splice( idx, 1 );
+    var idx = newPixArr.indexOf(randomPic);
+    newPixArr.splice(idx, 1);
 
-    randomPix.push( randomPic );
+    randomPix.push(randomPic);
 
     lang = $("#language-input").val().trim();
 
-    if (lang == 'en'){
-      var bingoPic = $( "<img>" ).attr( "src", randomPix[ i ].url ).attr( "data-id", randomPix[ i ].name ).attr( "id", id++ );
-    } else if (lang == 'es'){
-      var bingoPic = $( "<img>" ).attr( "src", randomPix[ i ].url ).attr( "data-id", randomPix[ i ].nombre ).attr( "id", id++ );
+    if (lang == 'en') {
+      var bingoPic = $("<img>").attr("src", randomPix[i].url).attr("data-id", randomPix[i].name).attr("id", id++);
+    } else if (lang == 'es') {
+      var bingoPic = $("<img>").attr("src", randomPix[i].url).attr("data-id", randomPix[i].nombre).attr("id", id++);
     } else {
-      var bingoPic = $( "<img>" ).attr( "src", randomPix[ i ].url ).attr( "data-id", randomPix[ i ].name ).attr( "id", id++ );
+      var bingoPic = $("<img>").attr("src", randomPix[i].url).attr("data-id", randomPix[i].name).attr("id", id++);
     }
 
-    $( bingoPic ).addClass( "bingoPix" );
+    $(bingoPic).addClass("bingoPix");
 
     $("#game-board").append(bingoPic);
-}
+  }
   forvo()
 }
 
@@ -209,131 +207,135 @@ let randomCall;
 
 function forvo() {
 
-  randomCall = randomPix[ Math.floor( Math.random() * randomPix.length ) ];
-  let idx = randomPix.indexOf( randomCall );
-  randomPix.splice( idx, 1 );
+  randomCall = randomPix[Math.floor(Math.random() * randomPix.length)];
+  let idx = randomPix.indexOf(randomCall);
+  randomPix.splice(idx, 1);
 
-  aJax( randomCall )
+  aJax(randomCall);
 
 } //end forvo fx
 
 let called;
 
-function aJax( randomCall ) {
+function aJax(randomCall) {
+  console.log('ajax fx');
   let key = 'a1947295bd2a7535393c3c3df3d666b0';
   let url;
 
 
-  if (lang == 'es'){
+  if (lang == 'es') {
     called = randomCall.nombre;
   } else {
     called = randomCall.name;
   }
 
-    url = 'https://apifree.forvo.com/key/' + key + '/format/json/callback/pronounce/action/word-pronunciations/word/' + encodeURI( called ) + '/language/' + lang + "/order/rate-desc";
+  url = 'https://apifree.forvo.com/key/' + key + '/format/json/callback/pronounce/action/word-pronunciations/word/' + encodeURI(called) + '/language/' + lang + "/order/rate-desc";
 
-console.log(called)
-  $.ajax( {
+  console.log(called)
+  $.ajax({
     url: url,
     jsonpCallback: "pronounce",
     dataType: "jsonp",
     type: "jsonp",
-    success: function ( data ) {
-      // console.log("forvo data is:", data);
+    success: function(data) {
+      console.log("ajax success:", data);
 
-      let name = data.items[ 0 ].word;
-      let country = data.items[ 0 ].country;
-      let mp3 = data.items[ 0 ].pathmp3;
-      let ogg = data.items[ 0 ].pathogg;
+      let name = data.items[0].word;
+      let country = data.items[0].country;
+      let mp3 = data.items[0].pathmp3;
+      let ogg = data.items[0].pathogg;
 
-      $( "#audio" ).html( `
+      $("#audio").html(`
       <audio autoplay>
         <source src="${ogg}" type="audio/ogg">
         <source src="${mp3}" type="audio/mpeg">
         Your browser does not support the audio element.
-      </audio> ` )
+      </audio> `)
 
       // checkAnswer( randomCall )
 
     },
-    error: function () {
-      console.log( "error" );
+    error: function() {
+      console.log("error");
     }
-  } ); //end ajax call
+  }); //end ajax call
 } //end aJax fx
 
 
 
 // function checkAnswer( randomCall ) {
-$( "#game-board" ).on( "click", ".bingoPix", function () {
-  let choice = $( this ).attr( "data-id" );
+$("#game-board").on("click", ".bingoPix", function() {
+  let choice = $(this).attr("data-id");
 
-  if ( choice == called ) {
+  if (choice == called) {
     score++
-    $( "#scoreBoard" ).html( score )
-    $( this ).removeClass( "wrong" );
-    $( this ).addClass( "correct" );
+    $("#scoreBoard").html(score)
+    $(this).removeClass("wrong");
+    $(this).addClass("correct");
 
     // Push clicked object ID to 'selected' array
-    selected.push( $( this ).attr( 'id' ) );
+    selected.push($(this).attr('id'));
 
     // Compare winners array to selected array for matches
-    for ( var i = 0; i < possibleWinners; i++ ) {
+    for (var i = 0; i < possibleWinners; i++) {
       var cellExists = 0;
 
-      for ( var j = 0; j < 5; j++ ) {
-        if ( $.inArray( winners[ i ][ j ], selected ) > -1 ) {
+      for (var j = 0; j < 5; j++) {
+        if ($.inArray(winners[i][j], selected) > -1) {
           cellExists++;
         }
       }
 
       // If all 5 winner cells exist in selected array alert success message
-      if ( cellExists == 5 ) {
+      if (cellExists == 5) {
         winner();
       }
     }
   } else {
-    $( this ).addClass( "wrong" );
+    $(this).addClass("wrong");
   }
   forvo()
-} )
+})
 // }
 
 const winners = [
-        [ '1', '2', '3', '4', '5' ],
-        [ '6', '7', '8', '9', '10' ],
-        [ '11', '12', '13', '14', '15' ],
-        [ '16', '17', '18', '19', '20' ],
-        [ '21', '22', '23', '24', '25' ],
-        [ '1', '6', '11', '16', '21' ],
-        [ '2', '7', '12', '17', '22' ],
-        [ '3', '8', '13', '18', '23' ],
-        [ '4', '9', '14', '19', '24' ],
-        [ '5', '10', '15', '20', '25' ],
-        [ '1', '7', '13', '19', '25' ],
-        [ '5', '9', '13', '17', '21' ]
-    ];
+  ['1', '2', '3', '4', '5'],
+  ['6', '7', '8', '9', '10'],
+  ['11', '12', '13', '14', '15'],
+  ['16', '17', '18', '19', '20'],
+  ['21', '22', '23', '24', '25'],
+  ['1', '6', '11', '16', '21'],
+  ['2', '7', '12', '17', '22'],
+  ['3', '8', '13', '18', '23'],
+  ['4', '9', '14', '19', '24'],
+  ['5', '10', '15', '20', '25'],
+  ['1', '7', '13', '19', '25'],
+  ['5', '9', '13', '17', '21']
+];
 
 let possibleWinners = winners.length;
 
-let selected = [ ];
+let selected = [];
 let won = 0
 
 // populateCard()
 
 function winner() {
+  console.log('winner fx')
 
-  alert( "winner!" );
+  alert("winner!");
   won++
-  $( "#winBoard" ).html( won );
-  $( "#start" ).append( `<button id="reset">Reset</button>` );
-  reset();
+  $("#winBoard").html(won);
+  setTimeout(function() {
+    console.log('set timeout')
+    reset();
+  }, 3000);
 }
 
-$( document ).on( "click", "#reset", function () {
+$(document).on("click", "#reset", function() {
   reset();
   $("#start").empty();
-} );
+});
 
 function reset() {
   console.log("reset");
