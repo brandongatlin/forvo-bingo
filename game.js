@@ -17,7 +17,7 @@ let pixArr = [
 
   {
     name: "banana",
-    nombre: "platano",
+    nombre: "plátano",
     url: "pics/banana.png"
   },
 
@@ -29,7 +29,7 @@ let pixArr = [
 
   {
     name: "carrots",
-    nombre: "zanahorias",
+    nombre: "zanahoria",
     url: "pics/carrots.png"
   },
 
@@ -47,7 +47,7 @@ let pixArr = [
 
   {
     name: "corn",
-    nombre: "mais",
+    nombre: "maís",
     url: "pics/corn.png"
   },
 
@@ -71,7 +71,7 @@ let pixArr = [
 
   {
     name: "grapes",
-    nombre: "uvas",
+    nombre: "uva",
     url: "pics/grapes.png"
   },
 
@@ -107,7 +107,7 @@ let pixArr = [
 
   {
     name: "orange",
-    nombre: "narnaja",
+    nombre: "naranja",
     url: "pics/orange.png"
   },
 
@@ -153,7 +153,7 @@ let pixArr = [
     url: "pics/water.png"
   }
 ];
-
+console.log('new')
 let urlList = [];
 
 var randomPix = [];
