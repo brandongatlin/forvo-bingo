@@ -353,6 +353,8 @@ function winner() {
   won++
   $( "#winBoard" ).html( won );
   $( "#start" ).append( `<button id="reset">Reset</button>` );
+  reset();
+  populateCard()
 }
 
 $( document ).on( "click", "#reset", function () {
