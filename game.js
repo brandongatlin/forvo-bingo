@@ -144,21 +144,14 @@ let pixArr = [
   }
 ];
 
-let row1 = $( `<div class="row" id="row-1"></div>` );
-let row2 = $( `<div class="row" id="row-2"></div>` );
-let row3 = $( `<div class="row" id="row-3"></div>` );
-let row4 = $( `<div class="row" id="row-4"></div>` );
-let row5 = $( `<div class="row" id="row-5"></div>` );
-
 let urlList = [];
 
 var randomPix = [];
 var randomPic = "";
 
-
-
 function populateCard() {
   console.log("pop");
+  $("#game-board").empty();
 
   //copy pixArr
   let newPixArr = [];
@@ -166,9 +159,7 @@ function populateCard() {
     newPixArr.push(pixArr[i])
   }
 
-  console.log("newPixArr", newPixArr);
-
-
+//get img src attribute for each pic
   newPixArr.forEach( function ( item ) {
     let url = item.url
     urlList.push( url )
@@ -189,64 +180,22 @@ function populateCard() {
 
     randomPix.push( randomPic );
 
-
-
-
     var bingoPic = $( "<img>" ).attr( "src", randomPix[ i ].url ).attr( "data-id", randomPix[ i ].name ).attr( "id", id++ );
     $( bingoPic ).addClass( "bingoPix" );
 
-    //start for loop to iterate thru pix array and populate bingo card
-    if ( i <= 4 ) {
-      $( row1 ).append( bingoPic );
-    }
-
-    if ( ( i >= 5 ) && ( i <= 9 ) ) {
-      $( row2 ).append( bingoPic );
-    }
-
-    if ( ( i >= 10 ) && ( i <= 14 ) ) {
-      $( row3 ).append( bingoPic );
-    }
-
-    if ( ( i >= 15 ) && ( i <= 19 ) ) {
-      $( row4 ).append( bingoPic );
-    }
-
-    if ( ( i >= 20 ) && ( i <= 24 ) ) {
-      $( row5 ).append( bingoPic );
-    }
-  } //end of for loop1
-
-  $( "#bingo-table" ).append( row1 );
-  $( "#bingo-table" ).append( row2 );
-  $( "#bingo-table" ).append( row3 );
-  $( "#bingo-table" ).append( row4 );
-  $( "#bingo-table" ).append( row5 );
-
+    $("#game-board").append(bingoPic);
+}
   forvo()
 }
-
-// begin forvo code
 
 let randomCall;
 
 function forvo() {
-  console.log("forvo");
-
+  // console.log("forvo");
 
   randomCall = randomPix[ Math.floor( Math.random() * randomPix.length ) ];
   let idx = randomPix.indexOf( randomCall );
   randomPix.splice( idx, 1 );
-
-  // console.log( randomCall.name );
-
-  // checkAnswer(randomCall)
-  // setTimeout(function () {
-  //   checkAnswer(randomCall)
-  //   forvo()
-  // }, 3000);
-
-  // checkAnswer( randomCall )
 
   aJax( randomCall )
 
@@ -254,7 +203,7 @@ function forvo() {
 
 
 function aJax( randomCall ) {
-  let key = config.MY_KEY;
+  let key = 'a1947295bd2a7535393c3c3df3d666b0';
   let lang = "en";
   let url = 'https://apifree.forvo.com/key/' + key + '/format/json/callback/pronounce/action/word-pronunciations/word/' + encodeURI( randomCall.name ) + '/language/' + lang + "/order/rate-desc";
 
@@ -292,7 +241,7 @@ function aJax( randomCall ) {
 
 
 // function checkAnswer( randomCall ) {
-$( "#bingo-table" ).on( "click", ".bingoPix", function () {
+$( "#game-board" ).on( "click", ".bingoPix", function () {
   let choice = $( this ).attr( "data-id" );
 
   if ( choice == randomCall.name ) {
@@ -353,33 +302,21 @@ function winner() {
   won++
   $( "#winBoard" ).html( won );
   $( "#start" ).append( `<button id="reset">Reset</button>` );
-  reset();
+  // reset();
   populateCard()
 }
 
-$( document ).on( "click", "#reset", function () {
-  reset();
-  populateCard();
-
-} );
+// $( document ).on( "click", "#reset", function () {
+//   reset();
+//   populateCard();
+//
+// } );
 
 function reset() {
   console.log("reset");
   selected = [];
-  $( "#row-1" ).empty();
-  $( "#row-2" ).empty();
-  $( "#row-3" ).empty();
-  $( "#row-4" ).empty();
-  $( "#row-5" ).empty();
+
+  populateCard();
 
   $("#start").empty();
-
-
 }
-
-
-// setTimeout(function () {
-//   console.log('settime out');
-//   checkAnswer(randomCall)
-//   forvo()
-// }, 3000);

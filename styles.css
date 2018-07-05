@@ -1,0 +1,49 @@
+#container {
+  display: grid;
+  grid-gap: 1em;
+  grid-template-areas:
+  "board stats";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+#game-board {
+  align-items: center;
+  display: grid;
+  grid-area: board;
+  grid-column-gap: 0px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: minmax(100px, auto);
+}
+
+#stat-board {
+  grid-area: stats;
+}
+
+.bingoPix {
+  border: .1rem solid black;
+  height: 150px;
+  width: 150px;
+}
+
+.bingoPix:hover {
+  background-color: yellow;
+}
+
+.correct {
+  background-color: green;
+}
+
+.wrong {
+  background-color: red;
+}
+
+#bingo-table {
+  /* width: 500px; */
+  /* border: .1rem solid blue; */
+}
+
+#audio,
+#score-col {
+  /* border: .1px solid blue; */
+}
