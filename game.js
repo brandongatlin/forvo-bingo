@@ -159,8 +159,14 @@ var randomPix = [];
 var randomPic = "";
 let lang;
 
+$("#submit-language").on("click", function(){
+  populateCard();
+
+})
+
 function populateCard() {
   $("#game-board").empty();
+  lang = $("#language-input").val().trim();
 
   //copy pixArr
   let newPixArr = [];
@@ -201,7 +207,6 @@ function populateCard() {
 let randomCall;
 
 function forvo() {
-  // console.log("forvo");
 
   randomCall = randomPix[ Math.floor( Math.random() * randomPix.length ) ];
   let idx = randomPix.indexOf( randomCall );
@@ -215,7 +220,6 @@ let called;
 
 function aJax( randomCall ) {
   let key = 'a1947295bd2a7535393c3c3df3d666b0';
-   // lang = 'es';
   let url;
 
 
@@ -314,7 +318,7 @@ let possibleWinners = winners.length;
 let selected = [ ];
 let won = 0
 
-populateCard()
+// populateCard()
 
 function winner() {
 
