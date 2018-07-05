@@ -107,6 +107,7 @@ let pixArr = [
 
   {
     name: "orange",
+    nombre: "narnaja",
     url: "pics/orange.png"
   },
 
