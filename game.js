@@ -47,7 +47,7 @@ let pixArr = [
 
   {
     name: "corn",
-    nombre: "maís",
+    nombre: "maíz",
     url: "pics/corn.png"
   },
 
@@ -137,7 +137,7 @@ let pixArr = [
 
   {
     name: "tomato",
-    nombre: "tomato",
+    nombre: "tomate",
     url: "pics/tomato.png"
   },
 
@@ -153,7 +153,7 @@ let pixArr = [
     url: "pics/water.png"
   }
 ];
-console.log('new')
+console.log('spell')
 let urlList = [];
 
 var randomPix = [];
