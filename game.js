@@ -163,7 +163,6 @@ $("#submit-language").on("click", function() {
 })
 
 function populateCard() {
-  console.log('poplat card')
   $("#game-board").empty();
   lang = $("#language-input").val().trim();
 
@@ -218,7 +217,6 @@ function forvo() {
 let called;
 
 function aJax(randomCall) {
-  console.log('ajax fx');
   let key = 'a1947295bd2a7535393c3c3df3d666b0';
   let url;
 
@@ -318,8 +316,6 @@ let possibleWinners = winners.length;
 let selected = [];
 let won = 0
 
-// populateCard()
-
 function winner() {
   console.log('winner fx')
 
@@ -327,7 +323,6 @@ function winner() {
   won++
   $("#winBoard").html(won);
   setTimeout(function() {
-    console.log('set timeout')
     reset();
   }, 3000);
 }
@@ -338,7 +333,6 @@ $(document).on("click", "#reset", function() {
 });
 
 function reset() {
-  console.log("reset");
   selected = [];
 
   populateCard();
