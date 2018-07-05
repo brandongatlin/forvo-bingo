@@ -1,19 +1,4 @@
-//psuedo//
-//1 - user chooses category
-//2 - card populates randomly with those images I have stored in an array
-//3 - each pic will have a value of its name
-//4 - user clicks "start", which starts a set time0ut
-//5 - a word is chosen at random and plugged in to the forvo function, which calls the word out loud
-//6 - after time expires I check to see if the value of clicked == the value of word called
-//7 - if so, pic square turns green, if not, the square turns red momentarily, then
-//8 - another word is called and set time 0ut begins again.
-//9 after 10 words are called, (or user gets 5 in a row) the game ends.
 
-//functions i'll need
-//forvo - to make api calls
-//check bingo - checks if there are 5 in a row
-//check game end - checks if 10 have been called
-//restart - begin again
 let score = 0;
 
 //card code
@@ -247,6 +232,7 @@ $( "#game-board" ).on( "click", ".bingoPix", function () {
   if ( choice == randomCall.name ) {
     score++
     $( "#scoreBoard" ).html( score )
+    $( this ).removeClass( "wrong" );
     $( this ).addClass( "correct" );
 
     // Push clicked object ID to 'selected' array
@@ -291,7 +277,7 @@ const winners = [
 
 let possibleWinners = winners.length;
 
-let selected = [ '13'];
+let selected = [ ];
 let won = 0
 
 populateCard()
@@ -302,15 +288,13 @@ function winner() {
   won++
   $( "#winBoard" ).html( won );
   $( "#start" ).append( `<button id="reset">Reset</button>` );
-  // reset();
-  populateCard()
+  reset();
 }
 
-// $( document ).on( "click", "#reset", function () {
-//   reset();
-//   populateCard();
-//
-// } );
+$( document ).on( "click", "#reset", function () {
+  reset();
+  $("#start").empty();
+} );
 
 function reset() {
   console.log("reset");
