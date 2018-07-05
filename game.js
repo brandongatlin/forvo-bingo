@@ -35,7 +35,7 @@ let pixArr = [
 
   {
     name: "bread",
-    url: "pics/bread.jpg"
+    url: "pics/bread.png"
   },
 
   {
