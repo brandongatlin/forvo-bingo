@@ -2,6 +2,7 @@
   display: grid;
   grid-gap: 1em;
   grid-template-areas:
+  "warning warning"
   "board stats";
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
@@ -18,6 +19,10 @@
 
 #stat-board {
   grid-area: stats;
+}
+
+#warning {
+  grid-area: warning;
 }
 
 .bingoPix {
