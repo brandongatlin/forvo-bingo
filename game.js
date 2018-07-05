@@ -256,7 +256,7 @@ function forvo() {
 function aJax( randomCall ) {
   let key = config.MY_KEY;
   let lang = "en";
-  let url = 'http://apifree.forvo.com/key/' + key + '/format/json/callback/pronounce/action/word-pronunciations/word/' + encodeURI( randomCall.name ) + '/language/' + lang + "/order/rate-desc";
+  let url = 'https://apifree.forvo.com/key/' + key + '/format/json/callback/pronounce/action/word-pronunciations/word/' + encodeURI( randomCall.name ) + '/language/' + lang + "/order/rate-desc";
 
   console.log( randomCall.name );
 
