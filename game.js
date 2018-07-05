@@ -5,86 +5,103 @@ let score = 0;
 let pixArr = [
   {
     name: "apple juice",
+    nombre: "jugo de manzana",
     url: "pics/apple-juice.png"
   },
 
   {
     name: "apple",
+    nombre: "manzana",
     url: "pics/apple.png"
   },
 
   {
     name: "banana",
+    nombre: "platano",
     url: "pics/banana.png"
   },
 
   {
     name: "bread",
+    nombre: "pan",
     url: "pics/bread.png"
   },
 
   {
     name: "carrots",
+    nombre: "zanahorias",
     url: "pics/carrots.png"
   },
 
   {
     name: "cheese",
+    nombre: "queso",
     url: "pics/cheese.jpg"
   },
 
   {
     name: "chicken",
+    nombre: "pollo",
     url: "pics/chicken.png"
   },
 
   {
     name: "corn",
+    nombre: "mais",
     url: "pics/corn.png"
   },
 
   {
     name: "eggs",
+    nombre: "huevos",
     url: "pics/eggs.png"
   },
 
   {
     name: "fish",
+    nombre: "pescado",
     url: "pics/fish.png"
   },
 
   {
     name: "french fries",
+    nombre: "papas fritas",
     url: "pics/fries.gif"
   },
 
   {
     name: "grapes",
+    nombre: "uvas",
     url: "pics/grapes.png"
   },
 
   {
     name: "ice cream",
+    nombre: "helado",
     url: "pics/icecream.png"
   },
 
   {
     name: "lettuce",
+    nombre: "lechuga",
     url: "pics/lettuce.png"
   },
 
   {
     name: "lobster",
+    nombre: "langosta",
     url: "pics/lobster.png"
   },
 
   {
     name: "milk",
+    nombre: "leche",
     url: "pics/milk.png"
   },
 
   {
     name: "orange juice",
+    nombre: "jugo de naranja",
     url: "pics/orange-juice.png"
   },
 
@@ -95,36 +112,43 @@ let pixArr = [
 
   {
     name: "potato",
+    nombre: "papas",
     url: "pics/potato.png"
   },
 
   {
     name: "rice",
+    nombre: "arroz",
     url: "pics/rice.png"
   },
 
   {
     name: "salad",
+    nombre: "ensalada",
     url: "pics/salad.png"
   },
 
   {
     name: "soup",
+    nombre: "sopa",
     url: "pics/soup.png"
   },
 
   {
     name: "tomato",
+    nombre: "tomato",
     url: "pics/tomato.png"
   },
 
   {
     name: "turkey",
+    nombre: "pavo",
     url: "pics/turkey.png"
   },
 
   {
     name: "water",
+    nombre: "agua",
     url: "pics/water.png"
   }
 ];
@@ -133,9 +157,9 @@ let urlList = [];
 
 var randomPix = [];
 var randomPic = "";
+let lang;
 
 function populateCard() {
-  console.log("pop");
   $("#game-board").empty();
 
   //copy pixArr
@@ -143,14 +167,6 @@ function populateCard() {
   for (var i = 0; i < pixArr.length; i++) {
     newPixArr.push(pixArr[i])
   }
-
-//get img src attribute for each pic
-  newPixArr.forEach( function ( item ) {
-    let url = item.url
-    urlList.push( url )
-    let name = item.name
-  } )
-  // $( ".bingo-row" ).empty();
 
   let id = 1;
   randomPix = []
@@ -165,7 +181,16 @@ function populateCard() {
 
     randomPix.push( randomPic );
 
-    var bingoPic = $( "<img>" ).attr( "src", randomPix[ i ].url ).attr( "data-id", randomPix[ i ].name ).attr( "id", id++ );
+    lang = $("#language-input").val().trim();
+
+    if (lang == 'en'){
+      var bingoPic = $( "<img>" ).attr( "src", randomPix[ i ].url ).attr( "data-id", randomPix[ i ].name ).attr( "id", id++ );
+    } else if (lang == 'es'){
+      var bingoPic = $( "<img>" ).attr( "src", randomPix[ i ].url ).attr( "data-id", randomPix[ i ].nombre ).attr( "id", id++ );
+    } else {
+      var bingoPic = $( "<img>" ).attr( "src", randomPix[ i ].url ).attr( "data-id", randomPix[ i ].name ).attr( "id", id++ );
+    }
+
     $( bingoPic ).addClass( "bingoPix" );
 
     $("#game-board").append(bingoPic);
@@ -186,14 +211,23 @@ function forvo() {
 
 } //end forvo fx
 
+let called;
 
 function aJax( randomCall ) {
   let key = 'a1947295bd2a7535393c3c3df3d666b0';
-  let lang = "en";
-  let url = 'https://apifree.forvo.com/key/' + key + '/format/json/callback/pronounce/action/word-pronunciations/word/' + encodeURI( randomCall.name ) + '/language/' + lang + "/order/rate-desc";
+   // lang = 'es';
+  let url;
 
-  console.log( randomCall.name );
 
+  if (lang == 'es'){
+    called = randomCall.nombre;
+  } else {
+    called = randomCall.name;
+  }
+
+    url = 'https://apifree.forvo.com/key/' + key + '/format/json/callback/pronounce/action/word-pronunciations/word/' + encodeURI( called ) + '/language/' + lang + "/order/rate-desc";
+
+console.log(called)
   $.ajax( {
     url: url,
     jsonpCallback: "pronounce",
@@ -229,7 +263,7 @@ function aJax( randomCall ) {
 $( "#game-board" ).on( "click", ".bingoPix", function () {
   let choice = $( this ).attr( "data-id" );
 
-  if ( choice == randomCall.name ) {
+  if ( choice == called ) {
     score++
     $( "#scoreBoard" ).html( score )
     $( this ).removeClass( "wrong" );
