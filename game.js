@@ -185,7 +185,7 @@ function populateCard() {
 
     randomPix.push(randomPic);
 
-    lang = $("#language-input").val().trim();
+    // lang = $("#language-input").val().trim();
 
     if (lang == 'en') {
       var bingoPic = $("<img>").attr("src", randomPix[i].url).attr("data-id", randomPix[i].name).attr("id", id++);
@@ -220,7 +220,6 @@ function aJax(randomCall) {
   let key = 'a1947295bd2a7535393c3c3df3d666b0';
   let url;
 
-
   if (lang == 'es') {
     called = randomCall.nombre;
   } else {
@@ -236,11 +235,17 @@ function aJax(randomCall) {
     dataType: "jsonp",
     type: "jsonp",
     success: function(data) {
+      console.log(data)
 
       let name = data.items[0].word;
       let country = data.items[0].country;
       let mp3 = data.items[0].pathmp3;
       let ogg = data.items[0].pathogg;
+      let username = data.items[0].username;
+
+      let text = `"${username} is from ${country}"`
+
+      $("#speaker-text").html(text);
 
       $("#audio").html(`
       <audio autoplay>
