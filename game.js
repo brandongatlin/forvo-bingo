@@ -235,7 +235,7 @@ function aJax(randomCall) {
     dataType: "jsonp",
     type: "jsonp",
     success: function(data) {
-      console.log(data)
+      // console.log(data)
 
       let name = data.items[0].word;
       let country = data.items[0].country;
@@ -322,7 +322,23 @@ let won = 0
 
 function winner() {
 
-  alert("winner!");
+  let modal = document.getElementById('myModal');
+
+  // Get the <span> element that closes the modal
+  let span = document.getElementsByClassName("close")[0];
+  modal.style.display = "block";
+
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
   won++
   $("#winBoard").html(won);
   setTimeout(function() {
