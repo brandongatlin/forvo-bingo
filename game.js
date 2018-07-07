@@ -286,7 +286,7 @@ let foodsArray = [{
 
   {
     name: "grapes",
-    nombre: "uva",
+    nombre: "uvas",
     url: "pics/grapes.png"
   },
 
@@ -367,4 +367,156 @@ let foodsArray = [{
     nombre: "agua",
     url: "pics/water.png"
   }
+];
+
+let suppliesArray = [{
+    name: "pencil",
+    nombre: "lápiz",
+    url: "pics/supplies/pencil.png"
+  },
+
+  {
+    name: "pen",
+    nombre: "bolígrafo",
+    url: "pics/supplies/pen.png"
+  },
+
+  {
+    name: "paper",
+    nombre: "papel",
+    url: "pics/supplies/paper.jpg"
+  },
+
+  {
+    name: "desk",
+    nombre: "pupitre",
+    url: "pics/supplies/desk.png"
+  },
+
+  {
+    name: "eraser",
+    nombre: "goma",
+    url: "pics/supplies/eraser.jpg"
+  },
+
+  {
+    name: "markers",
+    nombre: "marcadores",
+    url: "pics/supplies/markers.jpg"
+  },
+
+  {
+    name: "pencil sharpener",
+    nombre: "sacapuntas",
+    url: "pics/supplies/sharpener.jpg"
+  },
+
+  {
+    name: "chalk",
+    nombre: "tiza",
+    url: "pics/supplies/chalk.jpg"
+  },
+
+  {
+    name: "chalk board",
+    nombre: "pizarra",
+    url: "pics/supplies/chalkboard.jpg"
+  },
+
+  {
+    name: "book bag",
+    nombre: "mochila",
+    url: "pics/supplies/bookbag.jpg"
+  },
+
+  {
+    name: "book",
+    nombre: "libro",
+    url: "pics/supplies/book.jpg"
+  },
+
+  {
+    name: "scissors",
+    nombre: "tijeras",
+    url: "pics/supplies/scissors.jpg"
+  },
+
+  {
+    name: "hole punch",
+    nombre: "perforadora",
+    url: "pics/supplies/holepunch.jpg"
+  },
+
+  {
+    name: "notebook",
+    nombre: "cuaderno",
+    url: "pics/supplies/notebook.jpg"
+  },
+
+  {
+    name: "calculator",
+    nombre: "calculadora",
+    url: "pics/supplies/calculator.png"
+  },
+
+  {
+    name: "stapler",
+    nombre: "grapadora",
+    url: "pics/supplies/stapler.jpg"
+  },
+
+  {
+    name: "staples",
+    nombre: "grapas",
+    url: "pics/supplies/staples.jpg"
+  },
+
+  {
+    name: "tape",
+    nombre: "cinta",
+    url: "pics/supplies/tape.jpg"
+  },
+
+  {
+    name: "tissue",
+    nombre: "pañueolo descartable",
+    url: "pics/supplies/tissue.jpg"
+  },
+
+  {
+    name: "projector",
+    nombre: "proyector",
+    url: "pics/supplies/projector.jpg"
+  },
+
+  {
+    name: "pencil case",
+    nombre: "estuche",
+    url: "pics/supplies/pencilcase.jpg"
+  },
+
+  {
+    name: "bottle",
+    nombre: "botella",
+    url: "pics/supplies/bottle.jpg"
+  },
+
+  {
+    name: "bathroom pass",
+    nombre: "pase al baño",
+    url: "pics/supplies/pass.jpg"
+  },
+
+  {
+    name: "snack",
+    nombre: "merienda",
+    url: "pics/supplies/snack.jpg"
+  },
+
+  {
+    name: "paper airplane",
+    nombre: "avión de papel",
+    url: "pics/supplies/paper-plane.png"
+  },
+
 ];
