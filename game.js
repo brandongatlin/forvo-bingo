@@ -95,7 +95,7 @@ function aJax(randomCall) {
       let ogg = data.items[0].pathogg;
       let username = data.items[0].username;
 
-      let text = `"${username} is from ${country}"`
+      let text = `"User ${username} is from ${country}"`
 
       $("#speaker-text").html(text);
 
